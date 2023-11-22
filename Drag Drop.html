@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Drag and Drop</title>
+    <!-- css file -->
+    <link rel="stylesheet" href="Drag Drop.css">
+    <!-- icon cdn -->
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+
+</head>
+
+<body>
+    <div class="container">
+        <div id="left">
+            <div class="list" draggable="true"> <i class="ri-file-list-line"></i> List Item 1</div>
+            <div class="list" draggable="true"><i class="ri-file-list-line"></i> List Item 2</div>
+            <div class="list" draggable="true"><i class="ri-file-list-line"></i> List Item 3</div>
+            <div class="list" draggable="true"><i class="ri-file-list-line"></i> List Item 4</div>
+        </div>
+        <div id="right"></div>
+    </div>
+    <!-- JS STARTS HERE -->
+    <script>
+
+        let lists = document.getElementsByClassName("list");
+        let rightBox = document.getElementById("right");
+        let leftBox = document.getElementById("left");
+        for (list of lists) {
+            list.addEventListener("dragstart", function (e) {
+                let selected = e.target;
+
+                rightBox.addEventListener("dragover", function (e) {
+                    e.preventDefault()
+                });
+
+                rightBox.addEventListener("drop", function (e) {
+                    rightBox.appendChild(selected);
+                    selected = null;
+                });
+
+                leftBox.addEventListener("dragover", function (e) {
+                    e.preventDefault()
+                });
+
+                leftBox.addEventListener("drop", function (e) {
+                    leftBox.appendChild(selected);
+                    selected = null;
+                });
+            });
+        }
+    </script>
+</body>
+
+</html>
